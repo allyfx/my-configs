@@ -1,8 +1,10 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Brew
 export PATH="/opt/homebrew/lib/ruby/gems/3.3.0/bin:$PATH"
+
+# Gem
+export PATH=$PATH':/path/to/add'
+export GEM_HOME=$HOME/.gem
+export GEM_PATH=$HOME/.gem
 
 # Bun
 export BUN_INSTALL="$HOME/.bun"
@@ -12,20 +14,10 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-# Path to your oh-my-zsh installation.
 export ZSH="/Users/ally/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="spaceship"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
@@ -53,9 +45,13 @@ spaceship_git_email() {
   email="$(git config user.email)"
 
   if [[ -n $email ]]; then
-    # Define 'profile' as 'personal' based on email
+    # Define 'profile' como 'personal' ou 'work' com base no email
     if [[ "$email" == "aliciafoureauxlucas@gmail.com" ]]; then
         profile="personal"
+    fi
+
+    if [[ "$email" == "alicia.lucas@g2i.ai" ]]; then
+        profile="g2i"
     fi
   fi
 
@@ -83,6 +79,8 @@ SPACESHIP_PROMPT_ORDER=(
 SPACESHIP_USER_SHOW="always" # Shows System user name before directory name
  
 SPACESHIP_PROMPT_ADD_NEWLINE=false
+# SPACESHIP_PROMPT_SEPARATE_LINE=false # Make the prompt span across two lines
+# SPACESHIP_DIR_TRUNC=1 # Shows only the last directory folder name
  
 SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
@@ -100,3 +98,6 @@ export PATH="/opt/homebrew/opt/ruby@3.3/bin:/Users/ally/.gem/bin:$PATH"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Aliases
+alias ls="ls -G -1a"

@@ -5,6 +5,7 @@ Personal configuration files for my local development environment.
 ### Files
 
 - **`.zshrc`**: Main Zsh configuration, including prompt theming, plugins, and language/toolchain paths.
+- **`/nvim`**: My nvim configs, plugins and keymaps. Everything that I use for nvim is in here.
 
 ### Using this repo
 

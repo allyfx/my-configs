@@ -1,12 +1,16 @@
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+vim.opt.pumheight = 5
 
 local cmp = require('cmp')
 
 local select_opts = {behavior = cmp.SelectBehavior.Select}
 
 cmp.setup({
+  completion = {
+    keyword_length = 1
+  },
   sources = {
     {name = 'path'},
     {name = 'nvim_lsp'},
@@ -28,6 +32,15 @@ vim.lsp.enable('tsserver')
 vim.lsp.config('tsserver', {
   cmd = {'typescript-language-server', '--stdio'},
   filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact"},
+  root_dir = vim.fs.root(0, {'package.json', '.git'}),
+  capabilities = lsp_capabilities
+})
+
+-- Config tailwind
+vim.lsp.enable('twserver')
+vim.lsp.config('twserver', {
+  cmd = { "tailwindcss-language-server", "--stdio" },
+  filetypes = { "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact" },
   root_dir = vim.fs.root(0, {'package.json', '.git'}),
   capabilities = lsp_capabilities
 })
